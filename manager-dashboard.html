@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manager Dashboard - Grand Hotel</title>
+  <!-- External CSS Files -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/notifications.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/booking-success.css" />
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="auth-logo">
+          <i class="fas fa-hotel"></i>
+        </div>
+        <button class="close-sidebar" id="closeSidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="userInfo">
+          <h3 id="userName">Loading...</h3>
+          <p id="userRole">Hotel Manager</p>
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#dashboard" class="active" data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Overview
+          </a>
+        </li>
+        <li>
+          <a href="#analytics" data-section="analytics">
+            <i class="fas fa-chart-line"></i> Analytics
+          </a>
+        </li>
+        <li>
+          <a href="#reports" data-section="reports">
+            <i class="fas fa-file-alt"></i> Reports
+          </a>
+        </li>
+        <li>
+          <a href="#rooms" data-section="rooms">
+            <i class="fas fa-bed"></i> Rooms
+          </a>
+        </li>
+        <li>
+          <a href="#staff" data-section="staff">
+            <i class="fas fa-users"></i> Staff
+          </a>
+        </li>
+        <li>
+          <a href="#reservations" data-section="reservations">
+            <i class="fas fa-calendar"></i> Reservations
+          </a>
+        </li>
+        <li>
+          <a href="#finance" data-section="finance">
+            <i class="fas fa-money-bill-wave"></i> Finance
+          </a>
+        </li>
+        <li>
+          <a href="#settings" data-section="settings">
+            <i class="fas fa-cog"></i> Settings
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout-btn" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 id="welcomeMessage">Manager Dashboard</h1>
+            <p id="currentDate"></p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="period-selector">
+            <select id="reportPeriod" class="form-control">
+              <option value="today">Today</option>
+              <option value="week" selected>This Week</option>
+              <option value="month">This Month</option>
+              <option value="quarter">This Quarter</option>
+              <option value="year">This Year</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="refreshDataBtn">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+          <button class="btn btn-success" id="exportDataBtn">
+            <i class="fas fa-download"></i> Export
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Sections -->
+      <div id="dashboardSections">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section active">
+          <div class="stats-grid" id="dashboardStats">
+            <!-- Stats will be loaded dynamically -->
+          </div>
+
+          <div class="section-content">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="chart-container">
+                  <h4>Revenue Overview</h4>
+                  <canvas id="revenueChart"></canvas>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="recent-activity">
+                  <h4>Recent Activity</h4>
+                  <div id="recentActivity" class="activity-scroll">
+                    <!-- Activity will be loaded here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="dashboard-section">
+          <div class="section-header">
+            <h2>Analytics</h2>
+            <div class="section-actions">
+              <select id="analyticsPeriod" class="form-control">
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="quarter">This Quarter</option>
+                <option value="year">This Year</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="section-content" id="analyticsData">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="chart-container">
+                  <h4>Occupancy overview</h4>
+                  <canvas id="occupancyChart"></canvas>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="chart-container">
+                  <h4>Revenue Breakdown</h4>
+                  <canvas id="revenueBreakdownChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="chart-container">
+                  <h4>Room Type Distribution</h4>
+                  <canvas id="roomTypeChart"></canvas>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="chart-container">
+                  <h4>Guest Demographics</h4>
+                  <canvas id="demographicsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="dashboard-section">
+          <div class="section-header">
+            <h2>Reports</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="reports-grid" id="reportsGrid">
+              <!-- Reports will be loaded here -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section id="rooms" class="dashboard-section">
+          <div class="section-header">
+            <h2>Room Management</h2>
+            <div class="section-actions">
+              <button class="btn btn-primary" id="addRoomBtn">
+                <i class="fas fa-plus"></i> Add Room
+              </button>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="roomsTable">
+                <thead>
+                  <tr>
+                    <th>Room No</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Rate</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rooms will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Staff Section -->
+        <section id="staff" class="dashboard-section">
+          <div class="section-header">
+            <h2>Staff Management</h2>
+            <div class="section-actions">
+              <button class="btn btn-primary" id="addStaffBtn">
+                <i class="fas fa-user-plus"></i> Add Staff
+              </button>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="staffTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Staff will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reservations Section -->
+        <section id="reservations" class="dashboard-section">
+          <div class="section-header">
+            <h2>Reservations</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="reservationsTable">
+                <thead>
+                  <tr>
+                    <th>Reservation ID</th>
+                    <th>Guest</th>
+                    <th>Room</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Reservations will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Finance Section -->
+        <section id="finance" class="dashboard-section">
+          <div class="section-header">
+            <h2>Financial Overview</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="chart-container">
+              <h4>Income vs Expenses</h4>
+              <canvas id="financeChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="dashboard-section">
+          <div class="section-header">
+            <h2>Settings</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="settings-form">
+              <form id="settingsForm">
+                <div class="form-group">
+                  <label for="hotelName">Hotel Name</label>
+                  <input type="text" id="hotelName" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="taxRate">Tax Rate (%)</label>
+                  <input type="number" id="taxRate" class="form-control" step="0.01" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Save Settings
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="addRoomModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Room</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addRoomForm">
+            <div class="mb-3">
+              <label class="form-label">Room Number</label>
+              <input type="text" name="room_number" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Room Type</label>
+              <select name="room_type" class="form-select" required>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price per Night</label>
+              <input type="number" name="price_per_night" class="form-control" required step="0.01" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Capacity</label>
+              <input type="number" name="capacity" class="form-control" required value="2" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Amenities (comma separated)</label>
+              <input type="text" name="amenities" class="form-control" placeholder="WiFi, AC, TV" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select">
+                <option value="AVAILABLE">Available</option>
+                <option value="OCCUPIED">Occupied</option>
+                <option value="MAINTENANCE">Maintenance</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Room</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Room Modal -->
+  <div class="modal fade" id="editRoomModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Room</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editRoomForm">
+            <input type="hidden" name="room_id" />
+            <div class="mb-3">
+              <label class="form-label">Room Number</label>
+              <input type="text" name="room_number" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Room Type</label>
+              <select name="room_type" class="form-select" required>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price per Night</label>
+              <input type="number" name="price_per_night" class="form-control" required step="0.01" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select" required>
+                <option value="AVAILABLE">Available</option>
+                <option value="OCCUPIED">Occupied</option>
+                <option value="MAINTENANCE">Maintenance</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Room</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Staff Modal -->
+  <div class="modal fade" id="addStaffModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Staff Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addStaffForm">
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="full_name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" name="phone" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Role</label>
+              <select name="user_role" class="form-select" required>
+                <option value="RECEPTION">Reception</option>
+                <option value="MANAGER">Manager</option>
+                <option value="ADMIN">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Staff Member</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Staff Modal -->
+  <div class="modal fade" id="editStaffModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Staff Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editStaffForm">
+            <input type="hidden" name="user_id" />
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="full_name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Role</label>
+              <select name="user_role" class="form-select" required>
+                <option value="RECEPTION">Reception</option>
+                <option value="MANAGER">Manager</option>
+                <option value="CLIENT">Client</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Staff</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservation Details Modal -->
+  <div class="modal fade" id="reservationDetailsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reservation Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="reservationDetailsBody">
+          <!-- Content loaded via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Viewer Modal -->
+  <div class="modal fade" id="reportModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="reportModalTitle">Report View</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="reportContent" class="p-3">
+            <!-- Report content goes here -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="window.print()">Print Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- External JavaScript Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard-ui.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/booking-success.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/manager-dashboard.js"></script>
+</body>
+
+</html>
