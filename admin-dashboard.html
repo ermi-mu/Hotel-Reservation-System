@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Grand Hotel</title>
+  <!-- External CSS Files -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/notifications.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/booking-success.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="auth-logo">
+          <i class="fas fa-hotel"></i>
+        </div>
+        <button class="close-sidebar" id="closeSidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="userInfo">
+          <h3 id="userName">Loading...</h3>
+          <p id="userRole">System Administrator</p>
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#dashboard" class="active" data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Overview
+          </a>
+        </li>
+        <li>
+          <a href="#users" data-section="users">
+            <i class="fas fa-users-cog"></i> User Management
+          </a>
+        </li>
+        <li>
+          <a href="#rooms" data-section="rooms">
+            <i class="fas fa-bed"></i> Rooms
+          </a>
+        </li>
+        <li>
+          <a href="#settings" data-section="settings">
+            <i class="fas fa-cog"></i> Settings
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout-btn" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 id="welcomeMessage">Admin Dashboard</h1>
+            <p id="currentDate"></p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-primary" id="refreshDataBtn">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Sections -->
+      <div id="dashboardSections">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section active">
+          <div class="stats-grid" id="dashboardStats">
+            <!-- Stats will be loaded dynamically -->
+          </div>
+        </section>
+
+        <!-- User Management Section -->
+        <section id="users" class="dashboard-section">
+          <div class="section-header">
+            <h2>User Management</h2>
+            <div class="section-actions">
+              <button class="btn btn-primary" id="addUserBtn">
+                <i class="fas fa-user-plus"></i> Add User
+              </button>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="usersTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Users will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section id="rooms" class="dashboard-section">
+          <div class="section-header">
+            <h2>Room Management</h2>
+            <div class="section-actions">
+              <button class="btn btn-primary" id="addRoomBtn">
+                <i class="fas fa-plus"></i> Add Room
+              </button>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="roomsTable">
+                <thead>
+                  <tr>
+                    <th>Room No</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Rate</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rooms will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="dashboard-section">
+          <div class="section-header">
+            <h2>System Settings</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="settings-form">
+              <form id="settingsForm">
+                <div class="form-group mb-3">
+                  <label for="hotelName">Hotel Name</label>
+                  <input type="text" id="hotelName" class="form-control" />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="adminEmail">System Admin Email</label>
+                  <input type="email" id="adminEmail" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Save Settings
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add User Modal -->
+  <div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addUserForm">
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="full_name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" name="phone" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Role</label>
+              <select name="user_role" class="form-select" required>
+                <option value="CLIENT">Client</option>
+                <option value="RECEPTION">Reception</option>
+                <option value="MANAGER">Manager</option>
+                <option value="ADMIN">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Create User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit User Modal -->
+  <div class="modal fade" id="editUserModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editUserForm">
+            <input type="hidden" name="user_id" />
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="full_name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" name="phone" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Role</label>
+              <select name="user_role" class="form-select" required>
+                <option value="CLIENT">Client</option>
+                <option value="RECEPTION">Reception</option>
+                <option value="MANAGER">Manager</option>
+                <option value="ADMIN">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Room Modal -->
+  <div class="modal fade" id="addRoomModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Room</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addRoomForm">
+            <div class="mb-3">
+              <label class="form-label">Room Number</label>
+              <input type="text" name="room_number" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Room Type</label>
+              <select name="room_type" class="form-select" required>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price per Night</label>
+              <input type="number" name="price_per_night" class="form-control" required step="0.01" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Capacity</label>
+              <input type="number" name="capacity" class="form-control" required value="2" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Amenities (comma separated)</label>
+              <input type="text" name="amenities" class="form-control" placeholder="WiFi, AC, TV" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select">
+                <option value="AVAILABLE">Available</option>
+                <option value="OCCUPIED">Occupied</option>
+                <option value="MAINTENANCE">Maintenance</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Room</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Room Modal -->
+  <div class="modal fade" id="editRoomModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Room</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editRoomForm">
+            <input type="hidden" name="room_id" />
+            <div class="mb-3">
+              <label class="form-label">Room Number</label>
+              <input type="text" name="room_number" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Room Type</label>
+              <select name="room_type" class="form-select" required>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price per Night</label>
+              <input type="number" name="price_per_night" class="form-control" required step="0.01" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Capacity</label>
+              <input type="number" name="capacity" class="form-control" required step="1" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select" required>
+                <option value="AVAILABLE">Available</option>
+                <option value="OCCUPIED">Occupied</option>
+                <option value="MAINTENANCE">Maintenance</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Room</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard-ui.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/booking-success.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+
+</html>
