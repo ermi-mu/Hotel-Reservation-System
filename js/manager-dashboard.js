@@ -1713,3 +1713,4 @@ window.showAddStaffModal = showAddStaffModal;
 // [Eyuel commit 17] incremental JS improvement
 // [Eyuel commit 27] incremental JS improvement
 // [Eyuel commit 37] incremental JS improvement
+// [Eyuel commit 47] incremental JS improvement
