@@ -487,3 +487,4 @@ function hideLoading() {
     if (typeof LoadingUI !== 'undefined') LoadingUI.hide();
 }
 // [Eyuel commit 1] incremental JS improvement
+// [Eyuel commit 11] incremental JS improvement
