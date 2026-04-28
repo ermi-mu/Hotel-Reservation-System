@@ -1711,3 +1711,4 @@ window.showAddRoomModal = showAddRoomModal;
 window.showAddStaffModal = showAddStaffModal;
 // [Eyuel commit 7] incremental JS improvement
 // [Eyuel commit 17] incremental JS improvement
+// [Eyuel commit 27] incremental JS improvement
