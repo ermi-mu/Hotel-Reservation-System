@@ -80,3 +80,4 @@ if (typeof window.showMessage !== 'undefined') {
     };
 }
 // [Eyuel commit 8] incremental JS improvement
+// [Eyuel commit 18] incremental JS improvement
