@@ -225,8 +225,3 @@ const API = {
     addServicesToReservation: (id, services) => HotelAPI.addServicesToReservation(id, services)
   }
 };
-// [Eyuel commit 2] incremental JS improvement
-// [Eyuel commit 12] incremental JS improvement
-// [Eyuel commit 22] incremental JS improvement
-// [Eyuel commit 32] incremental JS improvement
-// [Eyuel commit 42] incremental JS improvement

@@ -102,8 +102,3 @@ const BookingUI = {
         };
     }
 };
-// [Eyuel commit 4] incremental JS improvement
-// [Eyuel commit 14] incremental JS improvement
-// [Eyuel commit 24] incremental JS improvement
-// [Eyuel commit 34] incremental JS improvement
-// [Eyuel commit 44] incremental JS improvement
