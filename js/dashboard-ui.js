@@ -88,3 +88,4 @@ function showMessage(type, text) {
 }
 // [Eyuel commit 5] incremental JS improvement
 // [Eyuel commit 15] incremental JS improvement
+// [Eyuel commit 25] incremental JS improvement
