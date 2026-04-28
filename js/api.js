@@ -227,3 +227,4 @@ const API = {
 };
 // [Eyuel commit 2] incremental JS improvement
 // [Eyuel commit 12] incremental JS improvement
+// [Eyuel commit 22] incremental JS improvement
