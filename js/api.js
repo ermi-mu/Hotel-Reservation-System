@@ -229,3 +229,4 @@ const API = {
 // [Eyuel commit 12] incremental JS improvement
 // [Eyuel commit 22] incremental JS improvement
 // [Eyuel commit 32] incremental JS improvement
+// [Eyuel commit 42] incremental JS improvement
