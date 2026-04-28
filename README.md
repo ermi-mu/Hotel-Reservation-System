@@ -15,7 +15,7 @@ A premium, full-stack hotel management system built with HTML, CSS, JavaScript, 
 ### Manager Dashboard (Analytics & Operations)
 ![Manager Dashboard](docs/images/manager_dashboard.png)
 
-## 🚀 Key Features
+## 🚀 Key Features.
 
 ### 🔐 Multi-Role Authentication
 - **Admin**: Full system access, hardware management, and staff/manager creation.
