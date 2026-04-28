@@ -86,8 +86,3 @@ function showMessage(type, text) {
     document.body.appendChild(messageDiv);
     setTimeout(() => messageDiv.remove(), 5000);
 }
-// [Eyuel commit 5] incremental JS improvement
-// [Eyuel commit 15] incremental JS improvement
-// [Eyuel commit 25] incremental JS improvement
-// [Eyuel commit 35] incremental JS improvement
-// [Eyuel commit 45] incremental JS improvement

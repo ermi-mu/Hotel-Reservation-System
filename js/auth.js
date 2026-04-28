@@ -566,8 +566,3 @@ if (typeof module !== "undefined" && module.exports) {
     checkPasswordStrength,
   };
 }
-// [Eyuel commit 3] incremental JS improvement
-// [Eyuel commit 13] incremental JS improvement
-// [Eyuel commit 23] incremental JS improvement
-// [Eyuel commit 33] incremental JS improvement
-// [Eyuel commit 43] incremental JS improvement
