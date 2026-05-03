@@ -64,3 +64,4 @@ function getDBConnection($useDb = true) {
 function closeDBConnection($conn) {
     $conn->close();
 }
+// Config commit 2
