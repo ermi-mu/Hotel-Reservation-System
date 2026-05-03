@@ -593,26 +593,55 @@ footer {
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    /* Lines 596-599 omitted */
+    transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
   }
 
-  .nav-links.active {/* Lines 602-603 omitted */}
+  .nav-links.active {
+    right: 0;
+  }
 
-  .nav-links li {/* Lines 606-608 omitted */}
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
 
-  .nav-links a {/* Lines 611-614 omitted */}
+  .nav-links a {
+    font-size: 1.2rem;
+    display: block;
+    padding: 1rem;
+  }
 
-  .btn-primary {/* Lines 617-620 omitted */}
+  .btn-primary {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+  }
 
-  .section-title {/* Lines 623-625 omitted */}
+  .section-title {
+    font-size: 2rem;
+    margin: 3rem 0 2rem;
+  }
 
-  .footer-grid {/* Lines 628-630 omitted */}
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 
-  .about-title {/* Lines 633-634 omitted */}
+  .about-title {
+    font-size: 2.5rem;
+  }
 
-  .about-stats {/* Lines 637-640 omitted */}
+  .about-stats {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
 
-  .testimonial-text {/* Lines 643-644 omitted */}
+  .testimonial-text {
+    font-size: 1.5rem;
+  }
 }
 @media (max-width: 480px) {
   .hero h1 {
