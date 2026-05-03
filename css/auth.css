@@ -279,8 +279,4 @@ select.form-control {
     grid-template-columns: 1fr;
   }
 }
-/* Commit 2: improve auth form spacing */
-/* Commit 3: add mobile auth layout support */
-/* Commit 4: refine auth button hover styles */
-/* Commit 28: refine social button hover styles */
-/* Commit 29: add auth success/error alert spacing */
+

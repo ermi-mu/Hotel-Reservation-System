@@ -615,33 +615,47 @@ footer {
   .testimonial-text {/* Lines 643-644 omitted */}
 }
 @media (max-width: 480px) {
-  .hero h1 {/* Lines 648-649 omitted */}
+  .hero h1 {
+    font-size: 2.2rem;
+  }
 
-  .hero-btns {/* Lines 652-656 omitted */}
+  .hero-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
 
-  .btn {/* Lines 659-662 omitted */}
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
 
-  .container {/* Lines 665-666 omitted */}
+  .container {
+    padding: 0 15px;
+  }
 
-  .section-title {/* Lines 669-670 omitted */}
+  .section-title {
+    font-size: 1.8rem;
+  }
 
-  .room-card .btn {/* Lines 673-674 omitted */}
+  .room-card .btn {
+    width: 100%;
+  }
 
-  .footer-logo {/* Lines 677-678 omitted */}
+  .footer-logo {
+    text-align: center;
+  }
 
-  .social-links {/* Lines 681-683 omitted */}
+  .social-links {
+    justify-content: center;
+    display: flex;
+  }
 }
 
 html,
 body {
   overflow-x: hidden;
 }
-/* Commit 11: add base style foundation variables */
-/* Commit 12: improve hero section layout */
-/* Commit 13: refine room card hover interaction */
-/* Commit 14: add footer link hover color */
-/* Commit 15: improve section title underline */
-/* Commit 16: add responsive hero adjustments */
-/* Commit 31: refine footer newsletter form inputs */
-/* Commit 32: add testimonial typography consistency */
-/* Commit 34: add base color variable comments */
+
