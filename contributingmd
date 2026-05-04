@@ -1,0 +1,27 @@
+# Contributing to Hotel Reservation System
+
+Thank you for your interest in contributing to the Hotel Reservation System project! Your contributions help improve the system and make it more robust for all users.
+
+## How to Contribute
+
+1. Fork the repository or create a branch from the main project folder.
+2. Make your changes in a clean and descriptive way.
+3. Follow the existing coding style and naming conventions.
+4. Test your changes manually before submitting.
+5. Add documentation updates for any feature or bug-fix changes.
+
+## Suggestions for Contributions
+
+- Bug fixes in PHP files, JavaScript, or CSS
+- Improvements to authentication and user flow
+- Enhanced reservation and payment handling
+- UI/UX polish for dashboards and forms
+- Security or validation improvements
+
+## Submitting Your Work
+
+- If using Git, create a clear commit message.
+- Provide a short description of what was changed.
+- If possible, include any steps to reproduce or verify the fix.
+
+Thanks for helping make this project better!
