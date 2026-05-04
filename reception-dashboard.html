@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reception Dashboard - Grand Hotel</title>
+  <!-- External CSS Files -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/notifications.css" />
+  <link rel="stylesheet" href="css/booking-success.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/booking-success.css" />
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="auth-logo">
+          <i class="fas fa-hotel"></i>
+        </div>
+        <button class="close-sidebar" id="closeSidebar">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="userInfo">
+          <h3 id="userName">Loading...</h3>
+          <p id="userRole">Receptionist</p>
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#dashboard" class="active" data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#checkin" data-section="checkin">
+            <i class="fas fa-sign-in-alt"></i> Check-in
+          </a>
+        </li>
+        <li>
+          <a href="#checkout" data-section="checkout">
+            <i class="fas fa-sign-out-alt"></i> Check-out
+          </a>
+        </li>
+        <li>
+          <a href="#reservations" data-section="reservations">
+            <i class="fas fa-calendar"></i> Reservations
+          </a>
+        </li>
+        <li>
+          <a href="#guests" data-section="guests">
+            <i class="fas fa-users"></i> Guests
+          </a>
+        </li>
+        <li>
+          <a href="#rooms" data-section="rooms">
+            <i class="fas fa-bed"></i> Rooms
+          </a>
+        </li>
+        <li>
+          <a href="#services" data-section="services">
+            <i class="fas fa-concierge-bell"></i> Services
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout-btn" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 id="welcomeMessage">Reception Dashboard</h1>
+            <p id="currentDate"></p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="search-box">
+            <input type="text" id="quickSearch" placeholder="Search..." class="form-control" />
+            <i class="fas fa-search"></i>
+          </div>
+          <button class="btn btn-primary" id="newBookingBtn">
+            <i class="fas fa-plus"></i> New Booking
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Sections -->
+      <div id="dashboardSections">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section active">
+          <div class="stats-grid" id="dashboardStats">
+            <!-- Stats will be loaded dynamically -->
+          </div>
+          <div class="section-content">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="today-section">
+                  <h4>Today's Check-ins</h4>
+                  <div id="todayCheckins">
+                    <!-- Today's check-ins will be loaded here -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="today-section">
+                  <h4>Today's Check-outs</h4>
+                  <div id="todayCheckouts">
+                    <!-- Today's check-outs will be loaded here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="recent-activity">
+                  <h4>Recent Activity</h4>
+                  <div id="recentActivity" class="recent-activity-list">
+                    <!-- Activity items will be loaded here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Check-in Section -->
+        <section id="checkin" class="dashboard-section">
+          <div class="section-header">
+            <h2>Check-in Management</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="checkin-form">
+              <form id="checkinForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="reservationId">Reservation ID</label>
+                      <input type="text" id="reservationId" class="form-control" placeholder="Enter reservation ID" />
+                    </div>
+                    <div class="form-group">
+                      <label for="roomNumber">Room Number</label>
+                      <input type="text" id="roomNumber" class="form-control" placeholder="Room number" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="checkinTime">Check-in Time</label>
+                      <input type="datetime-local" id="checkinTime" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="checkinNotes">Notes</label>
+                      <textarea id="checkinNotes" class="form-control" rows="3"
+                        placeholder="Additional notes..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Process Check-in
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Check-out Section -->
+        <section id="checkout" class="dashboard-section">
+          <div class="section-header">
+            <h2>Check-out Management</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="checkout-form">
+              <form id="checkoutForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="checkoutReservationId">Reservation ID</label>
+                      <input type="text" id="checkoutReservationId" class="form-control"
+                        placeholder="Enter reservation ID" />
+                    </div>
+                    <div class="form-group">
+                      <label for="checkoutRoomNumber">Room Number</label>
+                      <input type="text" id="checkoutRoomNumber" class="form-control" placeholder="Room number" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="checkoutTime">Check-out Time</label>
+                      <input type="datetime-local" id="checkoutTime" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                      <label for="paymentMethod">Payment Method</label>
+                      <select id="paymentMethod" class="form-control">
+                        <option value="cash">Cash</option>
+                        <option value="credit_card">Credit Card</option>
+                        <option value="debit_card">Debit Card</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Process Check-out
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reservations Section -->
+        <section id="reservations" class="dashboard-section">
+          <div class="section-header">
+            <h2>Reservation Management</h2>
+            <div class="section-actions">
+              <button class="btn btn-primary" id="createReservationBtn">
+                <i class="fas fa-plus"></i> Create Reservation
+              </button>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="reservationsTable">
+                <thead>
+                  <tr>
+                    <th>Reservation ID</th>
+                    <th>Guest</th>
+                    <th>Room</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Reservations will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Guests Section -->
+        <section id="guests" class="dashboard-section">
+          <div class="section-header">
+            <h2>Guest Management</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="table-responsive">
+              <table class="table" id="guestsTable">
+                <thead>
+                  <tr>
+                    <th>Guest ID</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Current Room</th>
+                    <th>Check-in Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Guests will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section id="rooms" class="dashboard-section">
+          <div class="section-header">
+            <h2>Room Status</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="rooms-grid" id="roomsGrid">
+              <!-- Rooms will be loaded here -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="dashboard-section">
+          <div class="section-header">
+            <h2>Service Requests</h2>
+          </div>
+
+          <div class="section-content">
+            <div class="services-list" id="servicesList">
+              <!-- Service requests will be loaded here -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="bookRoomModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create New Booking</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="newBookingForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="guestSelect" class="form-label">Select Guest</label>
+                <select class="form-select" id="guestSelect" required>
+                  <option value="">Select a guest...</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="roomSelect" class="form-label">Select Room</label>
+                <select class="form-select" id="roomSelect" required>
+                  <option value="">Select a room...</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="newCheckIn" class="form-label">Check-in Date</label>
+                <input type="date" class="form-control" id="newCheckIn" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="newCheckOut" class="form-label">Check-out Date</label>
+                <input type="date" class="form-control" id="newCheckOut" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="newGuests" class="form-label">Number of Guests</label>
+                <input type="number" class="form-control" id="newGuests" min="1" value="1" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="newSpecialRequests" class="form-label">Special Requests</label>
+              <textarea class="form-control" id="newSpecialRequests" rows="3"></textarea>
+            </div>
+            <div class="text-end mt-4">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="submitBookingBtn">Complete Booking</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="guestDetailsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Guest Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="reservationDetailsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reservation Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="reservationDetailsBody">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addServiceModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Service to Reservation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="servicesContainer">
+            <!-- Populated dynamically -->
+          </div>
+          <div class="text-end mt-4">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="submitAddServices()">Add Services</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="roomDetailsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Room Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- External JavaScript Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard-ui.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/booking-success.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reception-dashboard.js"></script>
+</body>
+
+</html>
