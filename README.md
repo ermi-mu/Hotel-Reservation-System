@@ -2,7 +2,7 @@
 
 A premium, full-stack hotel management system built with HTML, CSS, JavaScript, and PHP. This system provides a comprehensive suite of features for Guests, Staff, Managers, and Administrators.
 
-To see the project live click the link : https://hotelre.great-site.net/
+To see the project live click the link : https://hotel-reservation-system.infinityfreeapp.com/
 
 ## 📸 Screenshots
 
