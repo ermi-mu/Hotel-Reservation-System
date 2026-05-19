@@ -8,6 +8,10 @@
   <strong>A full-stack hotel reservation and operations system for guests, reception staff, managers, and administrators.</strong>
 </p>
 
+To see the project live click the link: https://hotel-reservation-system.infinityfreeapp.com/
+
+## 📸 Screenshots
+
 <p align="center">
   <img alt="PHP" src="https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white">
   <img alt="MySQL" src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
