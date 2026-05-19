@@ -27,4 +27,4 @@ INSERT IGNORE INTO users (username, password, email, full_name, user_role) VALUE
 ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@grandhotel.com', 'System Administrator', 'ADMIN'),
 ('manager', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'manager@grandhotel.com', 'Grand Manager', 'MANAGER'),
 ('reseption', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'reception@grandhotel.com', 'Front Desk', 'RECEPTION'),
-('client', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'client@grandhotel.com', 'Valued Guest', 'CLIENT'),
+('client', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'client@grandhotel.com', 'Valued Guest', 'CLIENT');

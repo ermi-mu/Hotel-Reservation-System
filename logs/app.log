@@ -1,1 +1,4 @@
 [2026-04-22 19:43:30] [AUTH] PASSWORD RESET OTP for ermiasmulugeta71@gmail.com: 959900 (Expires at: 2026-04-22 19:58:29)
+[2026-05-04 07:45:37] [AUTH] PASSWORD RESET OTP for ermiasmulugeta71@gmail.com: 157436 (Expires at: 2026-05-04 08:00:36)
+[2026-05-04 07:45:37] [MAIL] Email sending attempt to ermiasmulugeta71@gmail.com: Password Reset OTP - Grand Hotel
+[2026-05-04 07:45:37] [WARN] Warning: mail() function failed for ermiasmulugeta71@gmail.com
