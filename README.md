@@ -49,9 +49,9 @@ A premium, full-stack hotel management system built with HTML, CSS, JavaScript, 
      ```
 
 3. **Start the server**:
-   ```bash
-   php -S localhost:8000
-   ```
+    ```bash
+    php -S localhost:8000
+    ```
 
 ## 🔑 Default Credentials
 
@@ -67,3 +67,6 @@ A premium, full-stack hotel management system built with HTML, CSS, JavaScript, 
 - **Frontend**: Vanilla CSS (Custom UI), Bootstrap 5, FontAwesome, JavaScript (ES6+).
 - **Backend**: PHP 7.4+, MySQL.
 - **Security**: Password hashing (Bcrypt), Role-based redirection, Backend RBAC.
+
+<!-- Co-authored-by: Ermias-Mulugeta <ermiasmulugeta71@gmail.com>
+Co-authored-by: GitHub Copilot <copilot@github.com> -->
