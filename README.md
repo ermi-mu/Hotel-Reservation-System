@@ -2,7 +2,7 @@
 
 A premium, full-stack hotel management system built with HTML, CSS, JavaScript, and PHP. This system provides a comprehensive suite of features for Guests, Staff, Managers, and Administrators.
 
-## 📸 Screenshots
+## 📸 Screenshot
 
 ### Home Page
 ![Login Page](docs/images/home_page.png)
