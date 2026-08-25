@@ -68,5 +68,4 @@ A premium, full-stack hotel management system built with HTML, CSS, JavaScript, 
 - **Backend**: PHP 7.4+, MySQL.
 - **Security**: Password hashing (Bcrypt), Role-based redirection, Backend RBAC.
 
-<!-- Co-authored-by: Ermias-Mulugeta <ermiasmulugeta71@gmail.com>
-Co-authored-by: GitHub Copilot <copilot@github.com> -->
+Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
